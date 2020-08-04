@@ -195,7 +195,8 @@ _trap_handler:
     csrw    mepc, x30
 
     # store low bits of mtval
-    csrr    x30, mtval
+    #csrr    x30, mtval
+    csrr    x30, 0x343
     andi    x30, x30, 3
     sw      x30, 0(x1)
 
