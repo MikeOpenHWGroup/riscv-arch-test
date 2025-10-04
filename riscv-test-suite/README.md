@@ -1,5 +1,7 @@
 # RISC-V Test Suites
 
+## TODO: Update README for new framework and tests. Original README below.
+
 The tests are grouped based on the different extension subsets of the RISC-V unprivileged ISA.
 The tests strictly follow the [Test format](../spec/TestFormatSpec.adoc) specification.
 
