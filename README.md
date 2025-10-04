@@ -1,6 +1,8 @@
 
 # RISC-V Architecture Test SIG
 
+## TODO: Update README for new framework and tests. Old README follows.
+
 This is a repository for the work of the RISC-V Foundation Architecture Test SIG. The repository owners are:
 
 - Neel Gala (InCore Semiconductors)
