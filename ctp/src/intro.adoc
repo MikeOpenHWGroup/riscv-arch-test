@@ -29,7 +29,7 @@ Parameters will eventually all have formal names in UDB when they are all identi
 
 * Configuration: A set of extensions and parameters partially or fully describing the behavior of a RISC-V hart.  A full configuration is sufficient for a reference model to exactly match the behavior of a DUT except with regard to non-deterministic behaviors.
 
-* Non-deterministic Behaviors: behaviors that are unpredictable despite a full configuration.  For example, a tail-agnostic vector instruction might copy vector elements from the source, or might provide elements that are all 1s.  Either behavior is correct, and the hart might change behaviors from one instruction to the next, so the DUT and reference model cannot be guaranteed to exactly match.  Self-checking tests must accept all legal outcomes for non-deterministic behaviors.
+* Non-deterministic Behaviors: behaviors that are unpredictable despite a full configuration.  For example, a tail-agnostic vector instruction might copy vector elements from the source, or might provide elements that are all 1s.  Either behavior is correct, and the hart might change behaviors from one instruction to the next, so the DUT and reference model cannot be guaranteed to exactly match. footnote:[Ideally, in such cases a Reference Model would produce a list of all legal responses. However, there is no known open-source RISC-V Reference Model that does this.] Self-checking tests must accept all legal outcomes for non-deterministic behaviors.
 
 * Profile: A named collection of required and optional extensions, such as RVI20 or RVA23S64.  Profiles may be ratified by RISC-V or developed by the Certification Steering Committee to meet certification market needs, such as a simple microcontroller. A profile is a partial configuration.  The test plan must allow the DUT configuration to indicate which optional extensions and other parameters are used, and fully test all optional profile extensions provided by the DUT.
 
@@ -45,11 +45,13 @@ Parameters will eventually all have formal names in UDB when they are all identi
 
 * Bin: One target value for a coverpoint.  Each bin may be covered or not by a test suite.
 
+* Coverage Model: all of the covergroups and coverpoints used for a given testbench.  A Coverage Model may be implemented in one or multiple coverage files.
+
 * Test files: A file containing one or more tests, typically written in assembly language.  For example, rv32/I/add.S contains all of the RV32 tests to exercise the add_cg covergroup in I_coverage.svh.
 
 * Test: A snippet of code, typically a sequence of assembly language instructions, that exercises at least one bin of a coverpoint.
 
-* Test Suite: A collection of coverage and test files to test a particular extension, combination of extensions, or group of extensions.  For example, the RV32I test suite contains the I_coverage.svh coverage file and the rv32/I/add.S, addi.S, sub.S, and other tests files with tests that hit the coverpoints in that coverage file.  The RV64ZfaD test suite contains the ZfaD_coverage.svh coverage file and the rv64/ZfaD/fround.d.S, and other tests files with tests that hit the coverpoints in that coverage file.  The RVA23S64 test suite contains all of the required and selected optional test suites for the profile, incluidng RV64I, RV64ZfaD, ExceptionsS, etc.
+* Test Suite: A collection of test files to test a particular extension, combination of extensions, or group of extensions.  For example, the RV32I test suite contains the I_coverage.svh coverage file and the rv32/I/add.S, addi.S, sub.S, and other tests files with tests that hit the coverpoints in that coverage file.  The RV64ZfaD test suite contains the ZfaD_coverage.svh coverage file and the rv64/ZfaD/fround.d.S, and other tests files with tests that hit the coverpoints in that coverage file.  The RVA23S64 test suite contains all of the required and selected optional test suites for the profile, incluidng RV64I, RV64ZfaD, ExceptionsS, etc.
 
 * Trick Box: A set of DUT-specific macros that perform non-ISA functions such as booting the DUT, sending interrupts, and logging results. The trick box is defined in <<Trick Box>>.
 
