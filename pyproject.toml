@@ -1,0 +1,61 @@
+[tool.uv.workspace]
+members = ["framework", "generators/tests/testgen"]
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.406",
+    "ruff>=0.14.1",
+]
+
+###### RUFF CONFIG #####
+[tool.ruff]
+line-length = 120
+extend-exclude = [
+  "external", "_archive", "docs",
+  "generators/coverage", "generators/tests/scripts" # Old scripts that still need to be updated
+]
+
+[tool.ruff.lint]
+select = [
+  "F",    # various basic rules (pyflakes)
+  "E",    # errors (pycodestyle)
+  "W",    # warnings (pycodestyle)
+  "I",    # Import related rules (isort)
+  "UP",   # Upgraded version available in newer Python
+  "B",    # bugbear rules
+  "A",    # shadow builtins
+  "EXE",  # Executable file shebangs
+  "ANN",  # type annotation rules
+  "RUF",  # Ruff specific rules
+  "PTH",  # Pathlib usage
+  "SIM",  # Simplifications
+]
+
+ignore = [
+  # handled by formatter
+  "W191",
+  "E111",
+  "E114",
+  "E117",
+  "D206",
+  "D300",
+  "Q000",
+  "Q001",
+  "Q002",
+  "Q003",
+  "COM812",
+  "COM819",
+  "E501",
+]
+
+[tool.ty.src]
+exclude = ["external", "_archive"]
+
+##### PYRIGHT CONFIG #####
+[tool.pyright]
+exclude = [
+  "**/__pycache__", ".venv",
+  "external", "_archive", "docs",
+  "generators/coverage", "generators/tests/scripts" # Old scripts that still need to be updated
+]
+typeCheckingMode = "standard"
