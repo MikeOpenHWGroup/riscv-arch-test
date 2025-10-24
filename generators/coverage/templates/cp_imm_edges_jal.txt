@@ -1,0 +1,26 @@
+    cp_imm_edges_jal : coverpoint (ins.current.imm[12:0])  iff (ins.trap == 0 )  {
+        // imm is the jump offset
+        // Adding a range to account for signature logic (32 bytes)
+        wildcard bins b_4     = {13'b000000000001?};
+        wildcard bins b_8     = {13'b00000000001??};
+        wildcard bins b_16    = {13'b0000000001???};
+        wildcard bins b_32    = {13'b000000001????};
+        wildcard bins b_64    = {13'b00000001?????};
+        wildcard bins b_128   = {13'b0000001??????};
+        wildcard bins b_256   = {13'b000001???????};
+        wildcard bins b_512   = {13'b00001????????};
+        wildcard bins b_1024  = {13'b0001?????????};
+        wildcard bins b_2048  = {13'b001??????????};
+        wildcard bins b_4096  = {13'b01???????????};
+        wildcard bins b_m4    = {13'b111111111110?};
+        wildcard bins b_m8    = {13'b11111111110??};
+        wildcard bins b_m16   = {13'b1111111110???};
+        wildcard bins b_m32   = {13'b111111110????};
+        wildcard bins b_m64   = {13'b11111110?????};
+        wildcard bins b_m128  = {13'b1111110??????};
+        wildcard bins b_m256  = {13'b111110???????};
+        wildcard bins b_m512  = {13'b11110????????};
+        wildcard bins b_m1024 = {13'b1110?????????};
+        wildcard bins b_m2048 = {13'b110??????????};
+        wildcard bins b_m4096 = {13'b10???????????};
+    }
