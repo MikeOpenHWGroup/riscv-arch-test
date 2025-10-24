@@ -94,6 +94,6 @@ def generate_tests_for_coverpoint(instr_name: str, instr_type: str, coverpoint: 
     generator = _select_coverpoint_generator(coverpoint)
     hashval = myhash(instr_name + coverpoint)
     seed(hashval)
-    test_lines = [f"{coverpoint}_tests:"]
+    test_lines = [f"\n\n{coverpoint}_tests:"]
     test_lines.extend(generator(instr_name, instr_type, coverpoint, test_data))
     return "\n".join(test_lines)
