@@ -135,7 +135,6 @@ def generate_tests_for_instruction(
                 test_lines.extend(["# Testcase cp_asm_count", f"{instr_name}"])
             continue
         else:
-            test_lines.append(f"{coverpoint}_tests:")
             test_lines.append(generate_tests_for_coverpoint(instr_name, instr_type, coverpoint, test_data))
 
     # Combine test lines into a single string

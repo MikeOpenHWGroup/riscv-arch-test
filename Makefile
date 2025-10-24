@@ -98,8 +98,7 @@ coverage: generate-makefiles-ref
 
 .PHONY: clean-ref
 clean-ref:
-	rm -rf $(REF_WORKDIR)/common $(REF_WORKDIR)/**/coverage $(REF_WORKDIR)/**/elfs $(REF_WORKDIR)/**/build $(REF_WORKDIR)/**/reports $(REF_WORKDIR)/**/Makefile $(REF_WORKDIR)/stamps
-	rm -rf temp-tests/rv64 temp-tests/rv32
+	rm -rf $(REF_WORKDIR)
 
 # Dev targets
 .PHONY: lint

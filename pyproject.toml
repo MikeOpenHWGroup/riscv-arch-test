@@ -11,7 +11,7 @@ dev = [
 [tool.ruff]
 line-length = 120
 extend-exclude = [
-  "external", "_archive", "docs",
+  "external", "_archive", "ctp",
   "generators/coverage", "generators/tests/scripts" # Old scripts that still need to be updated
 ]
 
@@ -55,7 +55,7 @@ exclude = ["external", "_archive"]
 [tool.pyright]
 exclude = [
   "**/__pycache__", ".venv",
-  "external", "_archive", "docs",
+  "external", "_archive", "ctp",
   "generators/coverage", "generators/tests/scripts" # Old scripts that still need to be updated
 ]
 typeCheckingMode = "standard"
