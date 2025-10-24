@@ -1,0 +1,70 @@
+
+=== E Base Embedded Extension
+
+The E extension is a variant of I with 16 general purpose registers.  This test plan also includes tests restricted to these 16 registers for simple extensions most likely to be implemented on an enbedded core.
+
+The test plans are identical to the integer equivalents.  For example, E and I are the same, and EM is the same as M.  The coverpoints and tests are almost identical but use 16 instead of 32 registers.
+
+[[t-E-normative-rules]]
+.E Normative Rules
+[cols="1, 4, 2" options=header]
+|===
+|Unpriv Section|Normative Rule|Coverpoints
+|===
+
+[[t-E-coverpoints]]
+.E Instruction Coverpoints
+See <<t-I-coverpoints>>
+
+==== EM Embedded + Multiply/Divide
+
+[[t-EM-coverpoints]]
+.EM Instruction Coverpoints
+See <<t-M-coverpoints>>
+
+==== EZmmul Embedded + Multiply
+
+[[t-EZmmul-coverpoints]]
+See <<t-Zmmul-coverpoints>>
+
+==== EZca Embedded + Compressed
+
+[[t-EZca-coverpoints]]
+.EZca Instruction Coverpoints
+See <<t-Zca-coverpoints>>
+
+==== EZcb Embedded + More Compressed
+
+[[t-EZcb-coverpoints]]
+.EZcb Instruction Coverpoints
+See <<t-Zcb-coverpoints>>
+
+==== EZcmp Embedded + Compressed Push/Pop
+
+[[t-EZcmp-coverpoints]]
+.EZcmp Instruction Coverpoints
+See <<t-Zcmp-coverpoints>>
+
+==== EZcmt Embedded + Jump Tables
+
+[[t-EZcmt-coverpoints]]
+.EZcmt Instruction Coverpoints
+See <<t-Zcmt-coverpoints>>
+
+==== EZba Embedded + Address Generation
+
+[[t-EZba-coverpoints]]
+.EZba Instruction Coverpoints
+See <<t-Zba-coverpoints>>
+
+==== EZbb Embedded + Basic Bit Manipulation
+
+[[t-EZbb-coverpoints]]
+.EZbb Instruction Coverpoints
+See <<t-Zbb-coverpoints>>
+
+==== EZbs Embedded + Single-Bit Manipulation
+
+[[t-EZbs-coverpoints]]
+.EZbs Instruction Coverpoints
+See <<t-Zbs-coverpoints>>

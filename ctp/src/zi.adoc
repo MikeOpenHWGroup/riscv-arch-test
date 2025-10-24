@@ -1,0 +1,85 @@
+
+
+=== Zi*  Additional Unpriv Extensions
+
+==== Zicsr Control/Status Register Instructions
+
+[[t-Zicsr-coverpoints]]
+.Zicsr Instruction Coverpoints
+include::{testplansdir}/Zicsr.adoc[]
+
+
+==== Zifencei Instruction-Fetch Fence
+
+[[t-Zifencei-coverpoints]]
+.Zifencei Instruction Coverpoints
+include::{testplansdir}/Zifencei.adoc[]
+
+
+==== Zicond Conditional Instructions
+
+[[t-Zicond-coverpoints]]
+.Zicond Instruction Coverpoints
+include::{testplansdir}/Zicond.adoc[]
+
+==== Zihintpause Pause Hint
+
+[[t-Zihintpause-coverpoints]]
+.Zihintpause Instruction Coverpoints
+include::{testplansdir}/Zihintpause.adoc[]
+
+==== Zihintntl Non-temporal Locality Hint
+
+[[t-Zihintntl-coverpoints]]
+.Zihintntl Instruction Coverpoints
+,===
+//include::{testplansdir}/Zihintntl.adoc[]
+,===
+
+==== ZihintntlZca Compressed Non-temporal Locality Hint
+
+[[t-ZihintntlZca-coverpoints]]
+.ZihintntlZca Instruction Coverpoints
+,===
+//include::{testplansdir}/ZihintntlZca.adoc[]
+,===
+
+==== Zicbom Cache Block Flush/Invalidate
+
+[[t-Zicbom-coverpoints]]
+.Zicbom Instruction Coverpoints
+,===
+//include::{testplansdir}/Zicbom.adoc[]
+,===
+
+==== Zicboz Cache Block Zero
+
+[[t-Zicboz-coverpoints]]
+.Zicboz Instruction Coverpoints
+,===
+//include::{testplansdir}/Zicboz.adoc[]
+,===
+
+==== Zicbop Cache Block Prefetch
+
+[[t-Zicbop-coverpoints]]
+.Zicbop Instruction Coverpoints
+,===
+//include::{testplansdir}/Zicbop.adoc[]
+,===
+
+==== Za64rs Max 64B Reservation Set
+
+[[t-Za64rs-coverpoints]]
+.Za64rs Coverpoints
+,===
+//include::{testplansdir}/Za64rs.adoc[]
+,===
+
+==== Zic64bZicboz 64B Cache Block Zero
+
+[[t-Zic64bZicboz-coverpoints]]
+.Zic64bZicboz Instruction Coverpoints
+,===
+//include::{testplansdir}/Zic64bZicboz.adoc[]
+,===

@@ -1,0 +1,68 @@
+
+=== Miscellaneous Non-RV23 Unprivileged Extensions
+
+==== Zfinx Float in Integer Regs
+
+Zfinx replaces the F extension with a similar set of instructions that operate on x registers instead of f registers.  Zdinx and Zhinx are similar.
+
+[[t-Zfinx-coverpoints]]
+.Zfinx Coverpoints
+,===
+//include::{testplansdir}/Zfinx.adoc[]
+,===
+
+==== Zdinx Double in Integer Regs
+
+[[t-Zdinx-coverpoints]]
+.Zdinx Coverpoints
+,===
+//include::{testplansdir}/Zdinx.adoc[]
+,===
+
+==== Zhinx Half in Integer Regs
+
+[[t-Zhinx-coverpoints]]
+.Zhinx Coverpoints
+,===
+//include::{testplansdir}/Zhinx.adoc[]
+,===
+
+==== Zhinxmin Half Converts in Integer Regs
+
+[[t-Zhinxmin-coverpoints]]
+.Zhinxmin Coverpoints
+,===
+//include::{testplansdir}/Zhinxmin.adoc[]
+,===
+
+==== Zcmp Compressed Push/Pop
+
+[[t-Zcmp-coverpoints]]
+.Zcmp Coverpoints
+,===
+//include::{testplansdir}/Zcmp.adoc[]
+,===
+
+==== Zcmt Compressed Jump Tables
+
+[[t-Zcmt-coverpoints]]
+.Zcmt Coverpoints
+,===
+//include::{testplansdir}/Zcmt.adoc[]
+,===
+
+==== Zilsd Load/Store Double
+
+[[t-Zilsd-coverpoints]]
+.Zilsd Coverpoints
+,===
+//include::{testplansdir}/Zilsd.adoc[]
+,===
+
+==== Zclsd Compressed Load/Store Double
+
+[[t-Zclsd-coverpoints]]
+.Zclsd Coverpoints
+,===
+//include::{testplansdir}/Zclsd.adoc[]
+,===
