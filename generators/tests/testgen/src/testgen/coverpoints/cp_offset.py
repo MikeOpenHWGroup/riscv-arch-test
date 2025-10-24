@@ -78,6 +78,7 @@ def make_offset(instr_name: str, instr_type: str, coverpoint: str, test_data: Te
 
     return test_lines
 
+
 def make_offset_j(instr_name: str, instr_type: str, coverpoint: str, test_data: TestData) -> list[str]:
     """Generate tests for J-type forward and backward offsets."""
     params = generate_random_params(test_data, instr_type, allow_x0=False)
@@ -90,7 +91,6 @@ def make_offset_j(instr_name: str, instr_type: str, coverpoint: str, test_data: 
         "j 2f # jump past backward jump update",
         f"5: addi x{check_reg}, x{check_reg}, 13 # increment check register if backward jump taken",
         "j 4f # jump past forward jump test",
-
         "# cp_offset forward jump",
         f"2: {instr_name} x{params.rd}, 3f # forward jump",
         f"addi x{check_reg}, x{check_reg}, -6 # decrement check register if forward jump not taken",
@@ -98,7 +98,6 @@ def make_offset_j(instr_name: str, instr_type: str, coverpoint: str, test_data: 
         f"addi x{check_reg}, x{check_reg}, 7 # increment check register if forward jump taken",
         write_sigupd(params.rd, test_data),
         write_sigupd(check_reg, test_data),
-
         "# cp_offset backward jump",
         f"{instr_name} x{params.rd}, 5b # backward jump",
         f"addi x{check_reg}, x{check_reg}, -3 # decrement check register if backward jump not taken",
@@ -110,67 +109,72 @@ def make_offset_j(instr_name: str, instr_type: str, coverpoint: str, test_data: 
     test_data.int_regs.return_registers(params.used_int_regs)
     return test_lines
 
+
 def make_offset_lsbs(instr_name: str, instr_type: str, coverpoint: str, test_data: TestData) -> list[str]:
     params = generate_random_params(test_data, instr_type, allow_x0=False)
     assert params.rs1 is not None and params.rd is not None
     test_lines = ["# Testcase cp_offset_lsbs"]
     if instr_type == "JR":
-        test_lines.extend([
-            "LA(x3, jalrlsb1) # load address of label",
-            f"LI(x{params.rs1}, 1)" + " # branch is taken",
-            f"{instr_name} x1, x3, 1 # jump to label + 1, extra plus 1 should be discarded",
-            f"LI(x{params.rs1}, 0)" + " # branch is not taken",
-            "jalrlsb1:",
-            write_sigupd(params.rs1, test_data),
-            write_sigupd(params.rd, test_data),  # check return value in jalr
-            "LA(x3, jalrlsb2) # load address of label",
-            "addi x3, x3, 3 # add 3 to address",
-            f"LI(x{params.rs1},1)" + " # branch is taken",
-            f"{instr_name} x1, x3, -2 # jump to label + 1, extra plus 1 should be discarded",
-            f"LI(x{params.rs1}, 0)" + " # branch is not taken",
-            "jalrlsb2:",
-            write_sigupd(params.rs1, test_data),
-            write_sigupd(params.rd, test_data),  # check return value in jalr
-        ])
+        test_lines.extend(
+            [
+                "LA(x3, jalrlsb1) # load address of label",
+                f"LI(x{params.rs1}, 1)" + " # branch is taken",
+                f"{instr_name} x1, x3, 1 # jump to label + 1, extra plus 1 should be discarded",
+                f"LI(x{params.rs1}, 0)" + " # branch is not taken",
+                "jalrlsb1:",
+                write_sigupd(params.rs1, test_data),
+                write_sigupd(params.rd, test_data),  # check return value in jalr
+                "LA(x3, jalrlsb2) # load address of label",
+                "addi x3, x3, 3 # add 3 to address",
+                f"LI(x{params.rs1},1)" + " # branch is taken",
+                f"{instr_name} x1, x3, -2 # jump to label + 1, extra plus 1 should be discarded",
+                f"LI(x{params.rs1}, 0)" + " # branch is not taken",
+                "jalrlsb2:",
+                write_sigupd(params.rs1, test_data),
+                write_sigupd(params.rd, test_data),  # check return value in jalr
+            ]
+        )
     else:  # c.jalr / c.jr
-        test_lines.extend([
-        f"LA(x3, {instr_name}lsb00) # load address of label",
-        f"c.li x{params.rs1}, 1" + " # branch is taken",
-        f"{instr_name} x3 # jump to address with bottom two lsbs = 00",
-        f"c.li x{params.rs1}, 0" + " # branch is not taken & used as something to jump over",
-        ".align 2",
-        f"{instr_name}lsb00: ",
-        write_sigupd(params.rs1, test_data),
-        write_sigupd(1, test_data) if instr_name == "c.jalr" else "",  # check return value in c.jalr
-        f"LA(x3, {instr_name}lsb01) # load address of label",
-        "addi x3, x3, 1 # add 1 to address",
-        f"c.li x{params.rs1}, 1" + " # branch is taken",
-        f"{instr_name} x3 # jump to address with bottom two lsbs = 01",
-        f"c.li x{params.rs1}, 0" + " # branch is not taken & used as something to jump over",
-        ".align 2",
-        f"{instr_name}lsb01: ",
-        write_sigupd(params.rs1, test_data),
-        write_sigupd(1, test_data) if instr_name == "c.jalr" else "",  # check return value in c.jalr
-        f"LA(x3, {instr_name}lsb10) # load address of label",
-        "addi x3, x3, 2 # add 2 to address",
-        f"c.li x{params.rs1}, 1" + " # branch is taken",
-        f"{instr_name} x3 # jump to address with bottom two lsbs = 10",
-        f"c.li x{params.rs1}, 0" + " # branch is not taken & used as something to jump over",
-        ".align 2",
-        f"{instr_name}lsb10: nop",
-        write_sigupd(params.rs1, test_data),
-        write_sigupd(1, test_data) if instr_name == "c.jalr" else "",  # check return value in c.jalr
-        "nop",  # c.jalr does not support 2 byte jumps, so this is a noop
-        f"LA(x3, {instr_name}lsb11) # load address of label",
-        "addi x3, x3, 3 # add 3 to address",
-        f"c.li x{params.rs1}, 1" + " # branch is taken",
-        f"{instr_name} x3 # jump to address with bottom two lsbs = 11",
-        f"c.li x{params.rs1}, 0" + " # branch is not taken & used as something to jump over",
-        ".align 2",
-        f"{instr_name}lsb11: nop",
-        write_sigupd(params.rs1, test_data),
-        write_sigupd(1, test_data) if instr_name == "c.jalr" else "",  # check return value in c.jalr
-        ])
+        test_lines.extend(
+            [
+                f"LA(x3, {instr_name}lsb00) # load address of label",
+                f"c.li x{params.rs1}, 1" + " # branch is taken",
+                f"{instr_name} x3 # jump to address with bottom two lsbs = 00",
+                f"c.li x{params.rs1}, 0" + " # branch is not taken & used as something to jump over",
+                ".align 2",
+                f"{instr_name}lsb00: ",
+                write_sigupd(params.rs1, test_data),
+                write_sigupd(1, test_data) if instr_name == "c.jalr" else "",  # check return value in c.jalr
+                f"LA(x3, {instr_name}lsb01) # load address of label",
+                "addi x3, x3, 1 # add 1 to address",
+                f"c.li x{params.rs1}, 1" + " # branch is taken",
+                f"{instr_name} x3 # jump to address with bottom two lsbs = 01",
+                f"c.li x{params.rs1}, 0" + " # branch is not taken & used as something to jump over",
+                ".align 2",
+                f"{instr_name}lsb01: ",
+                write_sigupd(params.rs1, test_data),
+                write_sigupd(1, test_data) if instr_name == "c.jalr" else "",  # check return value in c.jalr
+                f"LA(x3, {instr_name}lsb10) # load address of label",
+                "addi x3, x3, 2 # add 2 to address",
+                f"c.li x{params.rs1}, 1" + " # branch is taken",
+                f"{instr_name} x3 # jump to address with bottom two lsbs = 10",
+                f"c.li x{params.rs1}, 0" + " # branch is not taken & used as something to jump over",
+                ".align 2",
+                f"{instr_name}lsb10: nop",
+                write_sigupd(params.rs1, test_data),
+                write_sigupd(1, test_data) if instr_name == "c.jalr" else "",  # check return value in c.jalr
+                "nop",  # c.jalr does not support 2 byte jumps, so this is a noop
+                f"LA(x3, {instr_name}lsb11) # load address of label",
+                "addi x3, x3, 3 # add 3 to address",
+                f"c.li x{params.rs1}, 1" + " # branch is taken",
+                f"{instr_name} x3 # jump to address with bottom two lsbs = 11",
+                f"c.li x{params.rs1}, 0" + " # branch is not taken & used as something to jump over",
+                ".align 2",
+                f"{instr_name}lsb11: nop",
+                write_sigupd(params.rs1, test_data),
+                write_sigupd(1, test_data) if instr_name == "c.jalr" else "",  # check return value in c.jalr
+            ]
+        )
 
     test_data.int_regs.return_registers(params.used_int_regs)
 

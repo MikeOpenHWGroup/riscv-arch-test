@@ -33,7 +33,6 @@ def make_cp_imm_edges(instr_name: str, instr_type: str, coverpoint: str, test_da
     return test_lines
 
 
-
 @add_coverpoint_generator("cp_imm_edges_branch")
 def make_cp_imm_edges_branch(instr_name: str, instr_type: str, coverpoint: str, test_data: TestData) -> list[str]:
     """Generate tests for branch immediate edge values."""
