@@ -111,13 +111,13 @@ $(BUILD_DIR)/%.html: $(SRC_DIR)/%.adoc $(ALL_SRCS) testplans
 # transposing them to one instruction per column, separating
 # into at most 10 instructions per page, and trimming unused
 # coverpoints
-TESTPLANS := $(wildcard ../../testplans/*)
+TESTPLANS := $(wildcard ../testplans/*)
 testplans: $(TESTPLANS)
 	@echo "Copying test plans..."
-	@if [ -d ../../testplans ]; then \
+	@if [ -d ../testplans ]; then \
 		mkdir -p $(BUILD_DIR); \
 		rm -rf $(BUILD_DIR)/testplans; \
-		./transpose_csv.py ../../testplans $(BUILD_DIR)/testplans 10; \
+		./transpose_csv.py ../testplans $(BUILD_DIR)/testplans 10; \
 	else \
 		echo "No test plans directory found in source."; \
 	fi
