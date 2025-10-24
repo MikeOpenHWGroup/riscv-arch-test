@@ -118,5 +118,11 @@ ENV/
 
 __pycache__
 riscof_work
+work-ref
 
-sail_config.json
+# Don't check in generated files for now
+coverpoints/unpriv
+tests/priv/headers
+tests/rv32
+tests/rv64
+coverpoints/coverage
