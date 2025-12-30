@@ -5,12 +5,17 @@
 # Directories and files
 # CONFIG_FILES is used as the input configs when just running `make` and will produce els in the `work` directory
 # REF_CONFIG_FILES is used as the input configs when running `make coverage` and will produce elfs and coverage reports in the `work-ref` directory
-CONFIG_FILES ?= config/duts/cvw/cvw-rv32gc/test_config.yaml config/duts/cvw/cvw-rv64gc/test_config.yaml
-#REF_CONFIG_FILES ?= config/ref/sail-rvi20_32/test_config.yaml config/ref/sail-rvi20_64/test_config.yaml
-REF_CONFIG_FILES ?= config/ref/sail-rv32gc/test_config.yaml config/ref/sail-rv64gc/test_config.yaml
+
+#CONFIG_FILES ?= config/duts/cvw/cvw-rv32gc/test_config.yaml config/duts/cvw/cvw-rv64gc/test_config.yaml
+CONFIG_FILES ?= config/duts/cve2/cv32e20/test_config.yaml
+
+#REF_CONFIG_FILES ?= config/ref/sail-rv32gc/test_config.yaml config/ref/sail-rv64gc/test_config.yaml
+REF_CONFIG_FILES ?= config/ref/sail-rv32gc/test_config.yaml
+
 WORKDIR     ?= work
 WORKDIR_REF ?= work-ref
-EXTENSIONS  ?=  I,M,F,D,Zca,Zcf,Zcd,Zaamo,Zalrsc,Zifencei # Extensions to generate tests for. Leave blank to generate for all tests.
+#EXTENSIONS  ?=  I,M,F,D,Zca,Zcf,Zcd,Zaamo,Zalrsc,Zifencei # Extensions to generate tests for. Leave blank to generate for all tests.
+EXTENSIONS  ?=  I,M
 
 TESTDIR        := tests
 SRCDIR64       := $(TESTDIR)/rv64
