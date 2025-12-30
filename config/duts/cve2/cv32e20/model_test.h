@@ -4,6 +4,8 @@
 # Copyright (c) 2025 OpenHW Foundation
 # SPDX-License-Identifier: BSD-3-Clause
 
+# CV32E20 specifics by mike.thompson@eclipse-foundation.org, December 2025
+
 #ifndef _CV32E20_RVMODEL_H
 #define _CV32E20_RVMODEL_H
 
